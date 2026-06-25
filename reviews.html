@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reviews — House Mynt Property Management</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy: #0f1f3d; --emerald: #2ecc8f; --emerald-dark: #27ae78; --light-bg: #f8faf9; --white: #ffffff; --text-muted: #6b7a8d; --border: #e2e8f0; }
+    body { font-family: 'Inter', sans-serif; color: var(--navy); background: var(--white); }
+
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 60px; background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-icon { width: 42px; height: 42px; background: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+    .logo-icon svg { width: 26px; height: 26px; }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .logo-text span:first-child { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--navy); font-weight: 700; }
+    .logo-text span:last-child { font-size: 10px; color: var(--emerald); letter-spacing: 2px; text-transform: uppercase; font-weight: 500; }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--navy); font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--emerald); }
+    .nav-cta { background: var(--emerald); color: var(--white) !important; padding: 10px 24px; border-radius: 6px; font-size: 14px; font-weight: 600; text-decoration: none; }
+    .nav-cta:hover { background: var(--emerald-dark) !important; }
+
+    .page-hero { background: var(--navy); color: var(--white); padding: 80px 60px; text-align: center; }
+    .page-hero .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--emerald); margin-bottom: 16px; }
+    .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 48px; margin-bottom: 16px; }
+    .page-hero p { font-size: 18px; color: #a8b8cc; max-width: 540px; margin: 0 auto 32px; line-height: 1.7; }
+    .hero-rating { display: flex; align-items: center; justify-content: center; gap: 12px; }
+    .stars { color: #fbbf24; font-size: 28px; letter-spacing: 2px; }
+    .rating-text { font-size: 16px; color: #a8b8cc; }
+    .rating-text strong { color: var(--white); font-size: 22px; }
+
+    section { padding: 80px 60px; }
+    .section-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--emerald); margin-bottom: 12px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 38px; margin-bottom: 16px; }
+
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; }
+    .review-card { background: var(--light-bg); border-radius: 14px; padding: 28px; border: 1px solid var(--border); }
+    .review-stars { color: #fbbf24; font-size: 16px; margin-bottom: 14px; letter-spacing: 1px; }
+    .review-text { font-size: 15px; color: var(--navy); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+    .reviewer { display: flex; align-items: center; gap: 12px; }
+    .reviewer-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--emerald); display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--white); font-size: 16px; flex-shrink: 0; }
+    .reviewer-info { display: flex; flex-direction: column; }
+    .reviewer-name { font-size: 14px; font-weight: 600; color: var(--navy); }
+    .reviewer-detail { font-size: 12px; color: var(--text-muted); }
+
+    .pagination { display: flex; justify-content: center; gap: 8px; }
+    .page-btn { width: 36px; height: 36px; border-radius: 8px; border: 1.5px solid var(--border); background: var(--white); color: var(--navy); font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+    .page-btn:hover, .page-btn.active { background: var(--emerald); color: var(--white); border-color: var(--emerald); }
+
+    .submit-section { background: var(--light-bg); }
+    .submit-section .section-title { margin-bottom: 8px; }
+    .submit-subtitle { font-size: 16px; color: var(--text-muted); margin-bottom: 40px; line-height: 1.7; }
+    .review-form { max-width: 640px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
+    .form-group label { font-size: 13px; font-weight: 600; color: var(--navy); letter-spacing: 0.5px; }
+    .form-group input, .form-group select, .form-group textarea { padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; color: var(--navy); background: var(--white); outline: none; transition: border-color 0.2s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--emerald); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .star-select { display: flex; gap: 8px; }
+    .star-btn { font-size: 28px; background: none; border: none; cursor: pointer; color: #d1d5db; transition: color 0.15s; line-height: 1; }
+    .star-btn.selected, .star-btn:hover { color: #fbbf24; }
+    .form-submit { background: var(--emerald); color: var(--white); border: none; padding: 14px 36px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s; }
+    .form-submit:hover { background: var(--emerald-dark); }
+
+    .cta-section { background: var(--emerald); text-align: center; padding: 80px 60px; }
+    .cta-section h2 { font-family: 'Playfair Display', serif; font-size: 40px; color: var(--white); margin-bottom: 16px; }
+    .cta-section p { font-size: 18px; color: rgba(255,255,255,0.85); margin-bottom: 36px; }
+    .btn-white { background: var(--white); color: var(--navy); padding: 16px 40px; border-radius: 8px; font-size: 16px; font-weight: 700; text-decoration: none; }
+    .btn-white:hover { opacity: 0.9; }
+
+    footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: 32px 60px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+    footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    footer a:hover { color: var(--emerald); }
+    .footer-links { display: flex; gap: 24px; }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; } .nav-links { display: none; }
+      .page-hero { padding: 60px 20px; } .page-hero h1 { font-size: 32px; }
+      section { padding: 60px 20px; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 16px; text-align: center; padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 26 26" fill="none"><rect x="3" y="3" width="8" height="8" fill="#2ecc8f"/><rect x="3" y="15" width="8" height="8" fill="rgba(255,255,255,0.3)"/><rect x="15" y="3" width="8" height="8" fill="rgba(255,255,255,0.3)"/><rect x="15" y="15" width="8" height="8" fill="#2ecc8f"/></svg>
+    </div>
+    <div class="logo-text">
+      <span>House Mynt</span>
+      <span>Property Management</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="how-we-work.html">What We Do</a></li>
+    <li><a href="fees.html">Transparent Fees</a></li>
+    <li><a href="reviews.html" class="active">Reviews</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="eyebrow">Client Reviews</div>
+  <h1>What Our Clients Say</h1>
+  <p>Real feedback from property owners who trust House Mynt to manage their investments.</p>
+  <div class="hero-rating">
+    <div class="stars">★★★★★</div>
+    <div class="rating-text"><strong>5.0</strong> average from 50+ reviews</div>
+  </div>
+</div>
+
+<section>
+  <div class="section-eyebrow">Reviews</div>
+  <div class="section-title">Trusted by Property Owners</div>
+  <div class="reviews-grid" id="reviewsGrid"></div>
+  <div class="pagination" id="pagination"></div>
+</section>
+
+<section class="submit-section">
+  <div class="section-eyebrow">Share Your Experience</div>
+  <div class="section-title">Leave a Review</div>
+  <p class="submit-subtitle">We'd love to hear from you. Your feedback helps us improve and helps other owners make confident decisions.</p>
+  <form class="review-form" onsubmit="submitReview(event)">
+    <div class="form-group">
+      <label>Your Name</label>
+      <input type="text" id="reviewName" placeholder="Jane Smith" required/>
+    </div>
+    <div class="form-group">
+      <label>Property Type</label>
+      <select id="reviewType">
+        <option value="">Select type</option>
+        <option>Single Family Home</option>
+        <option>Multi-Family</option>
+        <option>Condo / Townhouse</option>
+        <option>Commercial</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Your Rating</label>
+      <div class="star-select" id="starSelect">
+        <button type="button" class="star-btn" data-val="1">★</button>
+        <button type="button" class="star-btn" data-val="2">★</button>
+        <button type="button" class="star-btn" data-val="3">★</button>
+        <button type="button" class="star-btn" data-val="4">★</button>
+        <button type="button" class="star-btn" data-val="5">★</button>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Your Review</label>
+      <textarea id="reviewText" placeholder="Tell us about your experience with House Mynt…" required></textarea>
+    </div>
+    <button type="submit" class="form-submit">Submit Review</button>
+  </form>
+</section>
+
+<section class="cta-section">
+  <h2>Ready to Get Started?</h2>
+  <p>Join 100+ property owners who trust House Mynt to manage their investments.</p>
+  <a href="index.html#contact" class="btn-white">Request Free Consultation</a>
+</section>
+
+<footer>
+  <span>© 2025 House Mynt Property Management. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="mailto:housemynt@outlook.com">housemynt@outlook.com</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+  </div>
+</footer>
+
+<script>
+  const allReviews = [
+    { name: "Marcus T.", type: "Multi-Family Owner", stars: 5, text: "House Mynt completely transformed how I manage my properties. No more late-night maintenance calls, no more chasing rent. My portfolio runs itself now." },
+    { name: "Sandra R.", type: "Single Family Owner", stars: 5, text: "I was nervous handing over my property to a management company but House Mynt made it seamless. The monthly reports are clear and my tenant is happy." },
+    { name: "David L.", type: "Condo Owner", stars: 5, text: "The tenant they placed has been excellent — background check, references, everything. 10 months in and not a single issue. Worth every penny." },
+    { name: "Priya M.", type: "Multi-Family Owner", stars: 5, text: "I have 6 units and was drowning in calls and paperwork. House Mynt took everything over and now I actually enjoy being a landlord." },
+    { name: "James K.", type: "Single Family Owner", stars: 5, text: "They found a tenant in under two weeks and negotiated a great lease. I've tried other companies before but House Mynt is on a different level." },
+    { name: "Tina W.", type: "Townhouse Owner", stars: 5, text: "What I love most is the transparency. I can log in anytime, see exactly what's going on, and the fees are exactly what they said they'd be. No surprises." },
+    { name: "Robert A.", type: "Multi-Family Owner", stars: 5, text: "Maintenance used to keep me up at night. Now House Mynt handles it all and sends me a summary. My stress level has dropped dramatically." },
+    { name: "Angela P.", type: "Single Family Owner", stars: 5, text: "As someone who lives out of state, having House Mynt manage my property gives me complete peace of mind. They treat my home like it's their own." },
+    { name: "Kevin B.", type: "Condo Owner", stars: 5, text: "Switched to House Mynt after a bad experience elsewhere. Night and day difference. They're responsive, professional, and genuinely care about results." },
+  ];
+
+  let currentPage = 1;
+  const perPage = 6;
+  const totalPages = Math.ceil(allReviews.length / perPage);
+  let selectedStars = 0;
+
+  function renderReviews() {
+    const grid = document.getElementById('reviewsGrid');
+    const start = (currentPage - 1) * perPage;
+    const slice = allReviews.slice(start, start + perPage);
+    grid.innerHTML = slice.map(r => `
+      <div class="review-card">
+        <div class="review-stars">${'★'.repeat(r.stars)}</div>
+        <p class="review-text">"${r.text}"</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">${r.name[0]}</div>
+          <div class="reviewer-info">
+            <span class="reviewer-name">${r.name}</span>
+            <span class="reviewer-detail">${r.type}</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    const pg = document.getElementById('pagination');
+    pg.innerHTML = Array.from({length: totalPages}, (_, i) =>
+      `<button class="page-btn ${i+1===currentPage?'active':''}" onclick="goPage(${i+1})">${i+1}</button>`
+    ).join('');
+  }
+
+  function goPage(n) { currentPage = n; renderReviews(); window.scrollTo({top: 400, behavior: 'smooth'}); }
+
+  // Star selection
+  document.querySelectorAll('.star-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedStars = parseInt(btn.dataset.val);
+      document.querySelectorAll('.star-btn').forEach(b => {
+        b.classList.toggle('selected', parseInt(b.dataset.val) <= selectedStars);
+      });
+    });
+  });
+
+  function submitReview(e) {
+    e.preventDefault();
+    const name = document.getElementById('reviewName').value;
+    const type = document.getElementById('reviewType').value || 'Property Owner';
+    const text = document.getElementById('reviewText').value;
+    if (!selectedStars) { alert('Please select a star rating.'); return; }
+    allReviews.unshift({ name, type, stars: selectedStars, text });
+    currentPage = 1;
+    renderReviews();
+    e.target.reset();
+    selectedStars = 0;
+    document.querySelectorAll('.star-btn').forEach(b => b.classList.remove('selected'));
+    alert('Thank you for your review!');
+    window.scrollTo({top: 400, behavior: 'smooth'});
+  }
+
+  renderReviews();
+</script>
+</body>
+</html>
