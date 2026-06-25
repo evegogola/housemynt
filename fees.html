@@ -3,191 +3,172 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Transparent Fees — House Mynt Property Management</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <title>Transparent Fees | House Mynt</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --navy: #0f1f3d; --emerald: #2ecc8f; --emerald-dark: #27ae78; --light-bg: #f8faf9; --white: #ffffff; --text-muted: #6b7a8d; --border: #e2e8f0; }
-    body { font-family: 'Inter', sans-serif; color: var(--navy); background: var(--white); }
-
-    nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 60px; background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
-    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .logo-icon { width: 42px; height: 42px; background: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
-    .logo-icon svg { width: 26px; height: 26px; }
-    .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
-    .logo-text span:first-child { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--navy); font-weight: 700; }
-    .logo-text span:last-child { font-size: 10px; color: var(--emerald); letter-spacing: 2px; text-transform: uppercase; font-weight: 500; }
-    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
-    .nav-links a { text-decoration: none; color: var(--navy); font-size: 14px; font-weight: 500; transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--emerald); }
-    .nav-cta { background: var(--emerald); color: var(--white) !important; padding: 10px 24px; border-radius: 6px; font-size: 14px; font-weight: 600; text-decoration: none; }
-    .nav-cta:hover { background: var(--emerald-dark) !important; }
-
-    .page-hero { background: var(--navy); color: var(--white); padding: 80px 60px; text-align: center; }
-    .page-hero .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--emerald); margin-bottom: 16px; }
-    .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 48px; margin-bottom: 16px; }
-    .page-hero p { font-size: 18px; color: #a8b8cc; max-width: 540px; margin: 0 auto; line-height: 1.7; }
-
-    section { padding: 80px 60px; }
-    .section-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--emerald); margin-bottom: 12px; }
-    .section-title { font-family: 'Playfair Display', serif; font-size: 38px; margin-bottom: 16px; }
-    .section-subtitle { font-size: 16px; color: var(--text-muted); line-height: 1.7; max-width: 560px; margin-bottom: 48px; }
-
-    .plans-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 900px; margin: 0 auto; }
-    .plan-card { border-radius: 16px; padding: 48px; border: 2px solid var(--border); position: relative; transition: box-shadow 0.2s; }
-    .plan-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.1); }
-    .plan-card.featured { border-color: var(--emerald); background: var(--navy); color: var(--white); }
-    .plan-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--emerald); color: var(--white); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 6px 18px; border-radius: 20px; white-space: nowrap; }
-    .plan-name { font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--emerald); margin-bottom: 12px; }
-    .plan-rate { font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
-    .plan-rate span { font-size: 24px; font-weight: 400; font-family: 'Inter', sans-serif; }
-    .plan-subtitle { font-size: 14px; color: var(--text-muted); margin-bottom: 32px; }
-    .plan-card.featured .plan-subtitle { color: #a8b8cc; }
-    .plan-divider { height: 1px; background: var(--border); margin-bottom: 28px; }
-    .plan-card.featured .plan-divider { background: rgba(255,255,255,0.15); }
-    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
-    .plan-features li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; line-height: 1.5; }
-    .check { width: 20px; height: 20px; background: rgba(46,204,143,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
-    .plan-card.featured .check { background: rgba(46,204,143,0.25); }
-    .check svg { width: 11px; height: 11px; stroke: var(--emerald); fill: none; stroke-width: 3; }
-    .plan-cta { display: block; text-align: center; padding: 14px 32px; border-radius: 8px; font-size: 15px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
-    .plan-cta.outline { border: 2px solid var(--navy); color: var(--navy); }
-    .plan-cta.outline:hover { background: var(--navy); color: var(--white); }
-    .plan-cta.solid { background: var(--emerald); color: var(--white); }
-    .plan-cta.solid:hover { background: var(--emerald-dark); }
-
-    .no-hidden { background: var(--light-bg); text-align: center; }
-    .no-hidden .section-title { text-align: center; }
-    .no-hidden .section-subtitle { margin: 0 auto 48px; text-align: center; }
-    .fees-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 860px; margin: 0 auto; }
-    .fee-item { background: var(--white); border-radius: 12px; padding: 28px; border: 1px solid var(--border); text-align: center; }
-    .fee-item h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
-    .fee-item p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
-    .fee-amount { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--emerald); margin-bottom: 8px; }
-
-    .cta-section { background: var(--emerald); text-align: center; padding: 80px 60px; }
-    .cta-section h2 { font-family: 'Playfair Display', serif; font-size: 40px; color: var(--white); margin-bottom: 16px; }
-    .cta-section p { font-size: 18px; color: rgba(255,255,255,0.85); margin-bottom: 36px; }
-    .btn-white { background: var(--white); color: var(--navy); padding: 16px 40px; border-radius: 8px; font-size: 16px; font-weight: 700; text-decoration: none; }
-    .btn-white:hover { opacity: 0.9; }
-
-    footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: 32px 60px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
-    footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
-    footer a:hover { color: var(--emerald); }
-    .footer-links { display: flex; gap: 24px; }
-
-    @media (max-width: 768px) {
-      nav { padding: 16px 20px; } .nav-links { display: none; }
-      .page-hero { padding: 60px 20px; } .page-hero h1 { font-size: 32px; }
-      section { padding: 60px 20px; }
-      .plans-grid { grid-template-columns: 1fr; }
-      .fees-grid { grid-template-columns: 1fr; }
-      footer { flex-direction: column; gap: 16px; text-align: center; padding: 24px 20px; }
+    :root {
+      --navy: #0d1b2a;
+      --emerald: #2d6a4f;
+      --emerald-light: #40916c;
+      --cream: #f8f9fa;
+      --white: #ffffff;
+      --gray: #6c757d;
+      --light-gray: #e9ecef;
     }
+    body { font-family: 'Inter', sans-serif; color: var(--navy); background: var(--white); }
+    nav {
+      background: var(--navy);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+    .logo img { height: 200px; width: auto; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: #cdd8e3; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: #4CAF82; }
+
+    .page-hero { background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 100%); color: white; padding: 4rem 2rem; text-align: center; }
+    .page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 1rem; }
+    .page-hero p { color: #cdd8e3; max-width: 550px; margin: 0 auto; font-weight: 300; line-height: 1.7; }
+
+    .plans { padding: 4rem 2rem; }
+    .plans h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; text-align: center; margin-bottom: 0.5rem; }
+    .plans .subtitle { text-align: center; color: var(--gray); margin-bottom: 3rem; }
+    .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 740px; margin: 0 auto; }
+
+    .plan-card {
+      border: 2px solid var(--light-gray);
+      border-radius: 10px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      position: relative;
+    }
+    .plan-card.featured {
+      border-color: #4CAF82;
+      box-shadow: 0 8px 30px rgba(76,175,130,0.15);
+    }
+    .multi-discount { font-size: 1.3rem; font-weight: 800; color: #4CAF82; margin-bottom: 0.8rem; font-family: 'Playfair Display', serif; }
+    .plan-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #4CAF82;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .plan-name { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .plan-price { font-size: 3rem; font-weight: 700; color: #4CAF82; line-height: 1; margin: 1rem 0 0.3rem; }
+    .plan-price span { font-size: 1rem; font-weight: 400; color: var(--gray); }
+    .plan-desc { font-size: 0.9rem; color: var(--gray); margin-bottom: 2rem; line-height: 1.6; }
+    .plan-features { list-style: none; text-align: left; margin-bottom: 2rem; }
+    .plan-features li { font-size: 0.9rem; color: var(--navy); padding: 0.5rem 0; border-bottom: 1px solid var(--light-gray); display: flex; align-items: center; gap: 0.6rem; }
+    .plan-features li:last-child { border-bottom: none; }
+    .check { color: #4CAF82; font-weight: 700; }
+    .btn { display: inline-block; background: var(--emerald); color: white; padding: 0.9rem 2rem; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: background 0.2s; width: 100%; text-align: center; }
+    .btn:hover { background: var(--emerald-light); }
+
+    .note { background: var(--cream); padding: 3rem 2rem; text-align: center; }
+    .note p { color: var(--gray); max-width: 600px; margin: 0 auto; line-height: 1.7; font-size: 0.95rem; }
+    .note strong { color: var(--navy); }
+
+    footer { background: var(--navy); color: #cdd8e3; padding: 2rem; font-size: 0.85rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; max-width: 1100px; margin: 0 auto; }
+    .footer-left { text-align: left; }
+    .footer-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: #8a9ab0; margin-bottom: 0.3rem; }
+    .footer-email { font-size: 1.6rem; font-weight: 700; color: #4CAF82; text-decoration: none; font-family: 'Playfair Display', serif; }
+    .footer-email:hover { color: #fff; }
+    .footer-phone { font-size: 1.6rem; font-weight: 700; color: #4CAF82; text-decoration: none; font-family: 'Playfair Display', serif; display: block; margin-top: 0.3rem; }
+    .footer-phone:hover { color: #fff; }
+    .footer-right { text-align: right; color: #8a9ab0; font-size: 0.8rem; }
+
+    @media (max-width: 600px) { .nav-links { gap: 1rem; } }
   </style>
 </head>
 <body>
 
 <nav>
   <a href="index.html" class="logo">
-    <div class="logo-icon">
-      <svg viewBox="0 0 26 26" fill="none"><rect x="3" y="3" width="8" height="8" fill="#2ecc8f"/><rect x="3" y="15" width="8" height="8" fill="rgba(255,255,255,0.3)"/><rect x="15" y="3" width="8" height="8" fill="rgba(255,255,255,0.3)"/><rect x="15" y="15" width="8" height="8" fill="#2ecc8f"/></svg>
-    </div>
-    <div class="logo-text">
-      <span>House Mynt</span>
-      <span>Property Management</span>
-    </div>
+    <img src="logo.png" alt="House Mynt Property Management"/>
   </a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
-    <li><a href="how-we-work.html">What We Do</a></li>
-    <li><a href="fees.html" class="active">Transparent Fees</a></li>
+    <li><a href="how-we-work.html">How We Work</a></li>
+    <li><a href="fees.html" class="active">Fees</a></li>
     <li><a href="reviews.html">Reviews</a></li>
-    <li><a href="index.html#contact" class="nav-cta">Get Started</a></li>
   </ul>
 </nav>
 
-<div class="page-hero">
-  <div class="eyebrow">Pricing</div>
-  <h1>Simple, Transparent Fees</h1>
-  <p>No hidden charges. No surprises. Just clear pricing tied to your property's performance.</p>
-</div>
+<section class="page-hero">
+  <h1>Transparent Fees</h1>
+  <p>No surprises. No hidden costs. Just simple, honest pricing that works for property owners.</p>
+</section>
 
-<section style="text-align:center;">
-  <div class="section-eyebrow">Our Plans</div>
-  <div class="section-title">Choose the Right Plan for You</div>
-  <p class="section-subtitle" style="margin: 0 auto 48px;">Both plans include full-service management. The difference is the level of premium support and add-ons.</p>
+<section class="plans">
+  <h2>Choose Your Plan</h2>
+  <p class="subtitle">Both plans include full-service management. Pick the level that fits your needs.</p>
   <div class="plans-grid">
+
     <div class="plan-card">
       <div class="plan-name">Standard</div>
-      <div class="plan-rate">8<span>%</span></div>
-      <div class="plan-subtitle">of monthly rent collected</div>
-      <div class="plan-divider"></div>
+      <div class="plan-price">8%<span> / month</span></div>
+      <p class="plan-desc">Everything you need to manage your property professionally and profitably.</p>
       <ul class="plan-features">
-        <li><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div> Tenant screening & placement</li>
-        <li><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div> Rent collection & disbursements</li>
-        <li><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div> Maintenance coordination</li>
-        <li><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div> Monthly financial statements</li>
-        <li><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div> Move-in & move-out inspections</li>
-        <li><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div> Owner online portal access</li>
+        <li><span class="check">✓</span> Tenant screening & placement</li>
+        <li><span class="check">✓</span> Rent collection & disbursement</li>
+        <li><span class="check">✓</span> Lease preparation & management</li>
+        <li><span class="check">✓</span> Maintenance coordination</li>
+        <li><span class="check">✓</span> Monthly financial reports</li>
+        <li><span class="check">✓</span> Online owner portal</li>
       </ul>
-      <a href="index.html#contact" class="plan-cta outline">Get Started</a>
+      <a href="index.html#inquiry" class="btn">Get Started</a>
     </div>
+
     <div class="plan-card featured">
-      <div class="plan-badge">Most Popular</div>
+      <div class="multi-discount">Multi-Property Discount</div>
       <div class="plan-name">Premium</div>
-      <div class="plan-rate">10<span>%</span></div>
-      <div class="plan-subtitle">of monthly rent collected</div>
-      <div class="plan-divider"></div>
+      <p class="plan-desc"><strong>Property Management Built for Different Types of Property Owners.</strong> Every owner comes to property management from a different situation. The right system should reduce stress, protect the property, and give you clear visibility without pulling you into every issue.</p>
       <ul class="plan-features">
-        <li><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div> Everything in Standard</li>
-        <li><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div> Quarterly property inspections</li>
-        <li><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div> Priority maintenance response</li>
-        <li><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div> Annual financial review meeting</li>
-        <li><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div> Lease renewal negotiation</li>
-        <li><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div> Dedicated account manager</li>
+        <li><span class="check">✓</span> Everything in Standard</li>
+        <li><span class="check">✓</span> Priority maintenance response</li>
+        <li><span class="check">✓</span> Eviction protection support</li>
+        <li><span class="check">✓</span> Annual property inspection</li>
+        <li><span class="check">✓</span> Dedicated account manager</li>
+        <li><span class="check">✓</span> Lease renewal negotiation</li>
       </ul>
-      <a href="index.html#contact" class="plan-cta solid">Get Started</a>
+      <a href="index.html#inquiry" class="btn">Get Started</a>
     </div>
+
   </div>
 </section>
 
-<section class="no-hidden">
-  <div class="section-eyebrow">No Surprises</div>
-  <div class="section-title">What We Never Charge For</div>
-  <p class="section-subtitle">We believe in total transparency. Here's what's always included — no extra fees.</p>
-  <div class="fees-grid">
-    <div class="fee-item">
-      <div class="fee-amount">$0</div>
-      <h3>Setup Fee</h3>
-      <p>No charge to get started. Onboarding your property is completely free.</p>
-    </div>
-    <div class="fee-item">
-      <div class="fee-amount">$0</div>
-      <h3>Inspection Fees</h3>
-      <p>Move-in and move-out inspections are included in your plan, always.</p>
-    </div>
-    <div class="fee-item">
-      <div class="fee-amount">$0</div>
-      <h3>Vacancy Fees</h3>
-      <p>We only get paid when your property earns rent. No income, no fee.</p>
-    </div>
-  </div>
-</section>
-
-<section class="cta-section">
-  <h2>Not Sure Which Plan?</h2>
-  <p>Let's talk. We'll recommend the right fit for your property and goals.</p>
-  <a href="index.html#contact" class="btn-white">Request Free Consultation</a>
+<section class="note">
+  <p><strong>All fees are calculated as a percentage of monthly rent collected.</strong> There are no setup fees, no cancellation fees, and no charges during vacancy. We only earn when you earn. Have questions about which plan is right for you? <a href="index.html#inquiry" style="color:#2d6a4f; font-weight:600;">Contact us</a> and we'll help you decide.</p>
 </section>
 
 <footer>
-  <span>© 2025 House Mynt Property Management. All rights reserved.</span>
-  <div class="footer-links">
-    <a href="mailto:housemynt@outlook.com">housemynt@outlook.com</a>
-    <a href="#">Privacy Policy</a>
-    <a href="#">Terms of Service</a>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div class="footer-label">Property Management</div>
+      <a href="mailto:info@housemynt.com" class="footer-email">info@housemynt.com</a>
+      <a href="tel:3233041564" class="footer-phone">323.304.1564</a>
+    </div>
+    <div class="footer-right">
+      <p>© 2026 House Mynt Property Management</p>
+    </div>
   </div>
 </footer>
+
 </body>
 </html>
