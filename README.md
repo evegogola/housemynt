@@ -1,2 +1,2 @@
 # housemynt
-Full Property Management 
+Stress-Free Property Management
