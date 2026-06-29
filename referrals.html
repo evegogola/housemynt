@@ -4,52 +4,158 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Referrals & Agents | House Mynt</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1a1a2e; }
-
-    /* NAV */
-    nav {
-      background-color: #0a1628;
-      padding: 8px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      position: relative;
+    body { font-family: 'Inter', sans-serif; background-color: #fff; color: #1a1a2e; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 40px; background-color: #1a2744; position: sticky; top: 0; z-index: 100; }
+    .logo img { height: 50px; }
+    .nav-links { display: flex; gap: 30px; list-style: none; }
+    .nav-links a { color: #c8d8e8; text-decoration: none; font-size: 15px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: #4caf7d; }
+    .hero { background: linear-gradient(rgba(26,39,68,0.45), rgba(26,39,68,0.45)), url('keys.jpg') center center / cover no-repeat; color: white; text-align: center; padding: 80px 20px 60px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: 48px; margin-bottom: 16px; }
+    .hero h1 span { color: #4caf7d; }
+    .hero p { font-size: 18px; color: #c8d8e8; max-width: 620px; margin: 0 auto; line-height: 1.7; }
+    .banner { background-color: #2d6a4f; color: white; text-align: center; padding: 30px 20px; font-size: 20px; font-weight: 600; letter-spacing: 0.5px; }
+    .section { padding: 70px 40px; max-width: 1100px; margin: 0 auto; }
+    .section h2 { font-family: 'Playfair Display', serif; font-size: 36px; text-align: center; margin-bottom: 10px; color: #1a2744; }
+    .section .subtitle { text-align: center; color: #666; font-size: 16px; margin-bottom: 50px; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
+    .card { background: #f7f9fc; border-radius: 12px; padding: 36px 28px; border-top: 4px solid #4caf7d; text-align: center; }
+    .card .icon { font-size: 36px; margin-bottom: 14px; }
+    .card h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #1a2744; margin-bottom: 10px; }
+    .card p { font-size: 15px; color: #555; line-height: 1.6; }
+    .how-section { background-color: #1a2744; color: white; padding: 70px 40px; text-align: center; }
+    .how-section h2 { font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 10px; }
+    .how-section .subtitle { color: #c8d8e8; font-size: 16px; margin-bottom: 50px; }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px; max-width: 1000px; margin: 0 auto; }
+    .step { background: #243560; border-radius: 12px; padding: 32px 20px; }
+    .step .num { background-color: #4caf7d; color: white; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; margin: 0 auto 16px; }
+    .step h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; color: white; }
+    .step p { font-size: 14px; color: #c8d8e8; line-height: 1.6; }
+    .fee-box { background: #eaf7ef; border: 2px solid #4caf7d; border-radius: 14px; text-align: center; padding: 50px 30px; max-width: 700px; margin: 60px auto; }
+    .fee-box h2 { font-family: 'Playfair Display', serif; font-size: 32px; color: #1a2744; margin-bottom: 14px; }
+    .fee-box p { font-size: 16px; color: #444; line-height: 1.7; margin-bottom: 24px; }
+    .fee-box .btn { background-color: #4caf7d; color: white; padding: 14px 36px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px; display: inline-block; transition: background 0.2s; }
+    .fee-box .btn:hover { background-color: #3a9469; }
+    .contact-section { background-color: #f0f4f8; padding: 60px 40px; text-align: center; }
+    .contact-section h2 { font-family: 'Playfair Display', serif; font-size: 32px; color: #1a2744; margin-bottom: 12px; }
+    .contact-section p { color: #555; font-size: 16px; margin-bottom: 28px; }
+    .contact-info { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; font-size: 16px; color: #1a2744; font-weight: 500; }
+    .contact-info a { color: #4caf7d; text-decoration: none; font-weight: 600; }
+    footer { background-color: #1a2744; color: #c8d8e8; text-align: center; padding: 28px 20px; font-size: 14px; }
+    footer a { color: #4caf7d; text-decoration: none; }
+    @media (max-width: 768px) {
+      nav { flex-direction: column; align-items: flex-start; padding: 14px 20px; gap: 12px; }
+      .nav-links { flex-wrap: wrap; gap: 10px; }
+      .nav-links a { font-size: 13px; }
+      .hero { padding: 60px 20px 40px; }
+      .hero h1 { font-size: 30px; }
+      .hero p { font-size: 16px; }
+      .banner { font-size: 16px; padding: 20px 16px; }
+      .section { padding: 40px 20px; }
+      .section h2 { font-size: 26px; }
+      .how-section { padding: 40px 20px; }
+      .how-section h2 { font-size: 26px; }
+      .fee-box { margin: 30px 20px; padding: 36px 20px; }
+      .fee-box h2 { font-size: 24px; }
+      .contact-section { padding: 40px 20px; }
+      .contact-info { flex-direction: column; gap: 14px; text-align: center; }
     }
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-    }
-    .nav-logo img {
-      height: 130px;
-      width: auto;
-      display: block;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    nav ul li a {
-      color: #cce8d4;
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 0.04em;
-      transition: color 0.2s;
-    }
-    nav ul li a:hover, nav ul li a.active { color: #4ecb71; }
-
-    /* HAMBURGER */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      background: none;
-      border: none;
+  </style>
+</head>
+<body>
+<nav>
+  <div class="logo">
+    <a href="index.html">
+      <img src="assets/house-mynt-logo.png" alt="House Mynt Logo" onerror="this.style.display='none'"/>
+    </a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="how-we-work.html">How We Work</a></li>
+    <li><a href="best-practices.html">Best Practices</a></li>
+    <li><a href="referrals.html" class="active">Referrals & Agents</a></li>
+    <li><a href="fees.html">Fees</a></li>
+    <li><a href="reviews.html">Reviews</a></li>
+  </ul>
+</nav>
+<div class="hero">
+  <h1>Partner With <span>House Mynt</span></h1>
+  <p>Are you a real estate agent with clients who own rental properties? Let's work together. You send the referral — we handle everything else.</p>
+</div>
+<div class="banner">
+  🤝 We Pay Referral Fees to Licensed California Agents
+</div>
+<div class="section">
+  <h2>Why Agents Love Working With Us</h2>
+  <p class="subtitle">We make you look great — and we make it worth your while.</p>
+  <div class="cards">
+    <div class="card">
+      <div class="icon">💰</div>
+      <h3>Earn Referral Fees</h3>
+      <p>We pay competitive referral fees to licensed California agents who send us property owner clients. <strong>We pay referral fees on the first month's rent.</strong></p>
+    </div>
+    <div class="card">
+      <div class="icon">🏠</div>
+      <h3>We Handle Everything</h3>
+      <p>Your client gets full-service property management. You get credit for connecting them with someone great.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🤝</div>
+      <h3>Keep Your Relationship</h3>
+      <p><strong style="color:#4caf7d;">WE NEVER "POACH" YOUR CLIENTS.</strong> Our job is property management — your client stays <strong style="color:#1a2744; font-weight:900; font-size:17px;">YOURS</strong> for future sales.</p>
+    </div>
+    <div class="card">
+      <div class="icon">📍</div>
+      <h3>Local Experts</h3>
+      <p>Local Experts. National Exposure.</p>
+    </div>
+  </div>
+</div>
+<div class="how-section">
+  <h2>How It Works</h2>
+  <p class="subtitle">Simple. Fast. No hassle.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="num">1</div>
+      <h3>You Reach Out</h3>
+      <p>Email or call us to let us know you have a client who needs property management help.</p>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <h3>We Connect</h3>
+      <p>We reach out to your client, introduce ourselves, and explain how House Mynt can help them.</p>
+    </div>
+    <div class="step">
+      <div class="num">3</div>
+      <h3>We Sign Them Up</h3>
+      <p>If they become a House Mynt client, you earn a referral fee — it's that easy.</p>
+    </div>
+    <div class="step">
+      <div class="num">4</div>
+      <h3>Everyone Wins</h3>
+      <p>Your client is happy, you earned a fee, and their property is in great hands.</p>
+    </div>
+  </div>
+</div>
+<div class="fee-box">
+  <h2>Ready to Send a Referral?</h2>
+  <p>We work with licensed California real estate agents who want to add value for their clients. Reach out today and let's talk about how we can partner together in the South Bay.</p>
+  <a href="mailto:info@housemynt.com" class="btn">Email Us to Get Started</a>
+</div>
+<div class="contact-section">
+  <h2>Get In Touch</h2>
+  <p>We'd love to hear from you. Agents are always welcome to call or email directly.</p>
+  <div class="contact-info">
+    <span>📞 <a href="tel:3233041564">323.304.1564</a></span>
+    <span>✉️ <a href="mailto:info@housemynt.com">info@housemynt.com</a></span>
+    <span>📍 South Bay, California</span>
+  </div>
+</div>
+<footer>
+  <p>&copy; 2026 House Mynt Property Management. All rights reserved. | DRE #01334156 | <a href="mailto:info@housemynt.com">info@housemynt.com</a></p>
+</footer>
+</body>
+</html>
